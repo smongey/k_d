@@ -25,7 +25,7 @@ kd.$d.on('click', 'a.about', function(e){
 	$('a.about').addClass('active');
 	$('a.contact').removeClass('active');
 	window.history.pushState('', 'About &mdash; Kr&aring;kvik &amp; D&rsquo;Orazio', 'about');
-	$('section.home, section.contact').addClass('out');
+	$('section.about, section.contact, section.home').addClass('out');
 	setTimeout(function(){
 		$('#wrap').empty().load('about.html #wrap > *', function(){
 			$('body').removeClass().addClass('about');
@@ -44,7 +44,7 @@ kd.$d.on('click', 'a.about', function(e){
 	$('a.contact').addClass('active');
 	$('a.about').removeClass('active');
 	window.history.pushState('', 'Contact &mdash; Kr&aring;kvik &amp; D&rsquo;Orazio', 'contact');
-	$('section.home, section.about').addClass('out');
+	$('section.about, section.contact, section.home').addClass('out');
 	setTimeout(function(){
 		$('#wrap').empty().load('contact.html #wrap > *', function(){
 			$('body').removeClass().addClass('contact');
@@ -62,7 +62,7 @@ kd.$d.on('click', 'a.about', function(e){
 	window.history.pushState('', 'Kr&aring;kvik &amp; D&rsquo;Orazio', '/');
 	// $('section.home').toggleClass('out');
 	$('a.about, a.contact').removeClass('active');
-	$('section.about, section.contact').addClass('out');
+	$('section.about, section.contact, section.home').addClass('out');
 	setTimeout(function(){
 		$('#wrap').empty().load('/ #wrap > *', function(){
 			$('body').removeClass().addClass('home');
@@ -95,8 +95,25 @@ kd.$d.ready(function(){
 		$('a.about').addClass('active');
 
 	} else {
-		l('neither');
+		$('section.home').removeClass('out');
 	}
+});
+
+
+// var popped = ('state' in window.history && window.history.state !== null),
+// 	initialURL = location.href;
+
+$(window).bind('popstate', function(e) {
+	e.preventDefault();
+	// var lastlocation
+  // Ignore inital popstate that some browsers fire on page load
+  // var initialPop = !popped && location.href == initialURL
+  // popped = true
+  // if (initialPop) return;
+  l(window.history)
+  l(e);
+  // showMailOverview(); // exmaple function to display all email since the user has click Back.
+
 });
 
 

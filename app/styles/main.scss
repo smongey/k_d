@@ -7,6 +7,8 @@
 $slate: #231f20;
 $about: #eaf4f4;
 $contact: #f4ece9;
+// $about: #efdbd5;
+// $contact: #caeae9;
 $cubic: cubic-bezier(.09,.76,.29,1);
 
 $vertical: 120px;
@@ -31,7 +33,7 @@ a { text-decoration: none; }
 
 
 body {
-  transition: background $cubic 1s;
+  transition: background $cubic 2s;
   &.about {
     background: $about;
   }
@@ -234,7 +236,7 @@ section {
   transition: all $cubic 1s;
   z-index: 1111;
   &.out {
-    transform: scale(.95) translateY(-2%);
+    transform: scale(.98) translateY(-1%);
     opacity: 0;
     pointer-events: none;
   }
@@ -286,7 +288,7 @@ section.about, section.contact {
   padding-bottom: $vertical * 1.5;
   transition: all $cubic 1s;
   &.out {
-    transform: scale(.95) translateY(-2%);
+    transform: scale(.98) translateY(-2%);
     opacity: 0;
     pointer-events: none;
   }
