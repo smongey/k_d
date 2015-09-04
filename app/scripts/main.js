@@ -98,7 +98,7 @@ kd.$d.ready(function(){
 	} else {
 		$('section.home').removeClass('out');
 	}
-	l(kd.url.href);
+	l(kd.url);
 });
 
 
