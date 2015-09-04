@@ -5,7 +5,8 @@ var l = function (honk) { console.log(honk); };
 var kd = {
 	$w : $(window),
 	$d : $(document),
-	$b : $('body')
+	$b : $('body'),
+	url : window.location
 };
 
 
@@ -24,7 +25,7 @@ kd.$d.on('click', 'a.about', function(e){
 	// $('section.home').toggleClass('out');
 	$('a.about').addClass('active');
 	$('a.contact').removeClass('active');
-	window.history.pushState('', 'About &mdash; Kr&aring;kvik &amp; D&rsquo;Orazio', 'about');
+	window.history.pushState('', 'About &mdash; Kr&aring;kvik &amp; D&rsquo;Orazio', 'about.html');
 	$('section.about, section.contact, section.home').addClass('out');
 	setTimeout(function(){
 		$('#wrap').empty().load('about.html #wrap > *', function(){
@@ -43,7 +44,7 @@ kd.$d.on('click', 'a.about', function(e){
 	// $('section.home').toggleClass('out');
 	$('a.contact').addClass('active');
 	$('a.about').removeClass('active');
-	window.history.pushState('', 'Contact &mdash; Kr&aring;kvik &amp; D&rsquo;Orazio', 'contact');
+	window.history.pushState('', 'Contact &mdash; Kr&aring;kvik &amp; D&rsquo;Orazio', 'contact.html');
 	$('section.about, section.contact, section.home').addClass('out');
 	setTimeout(function(){
 		$('#wrap').empty().load('contact.html #wrap > *', function(){
@@ -97,6 +98,7 @@ kd.$d.ready(function(){
 	} else {
 		$('section.home').removeClass('out');
 	}
+	l(kd.url.href);
 });
 
 
@@ -110,8 +112,10 @@ $(window).bind('popstate', function(e) {
   // var initialPop = !popped && location.href == initialURL
   // popped = true
   // if (initialPop) return;
-  l(window.history)
-  l(e);
+  //l(window.history)
+  //l(e);
+
+
   // showMailOverview(); // exmaple function to display all email since the user has click Back.
 
 });
