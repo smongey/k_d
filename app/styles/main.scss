@@ -3,6 +3,14 @@
 
 * { box-sizing: border-box; -webkit-box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
+
+@font-face {
+  font-family: 'kd';
+  src: url('../fonts/PatronWEB-Regular.woff');
+  font-weight: 400;
+}
+
+
 // Variables
 $slate: #231f20;
 $about: #eaf4f4;
@@ -12,7 +20,7 @@ $contact: #f4ece9;
 $cubic: cubic-bezier(.09,.76,.29,1);
 
 $vertical: 120px;
-$sans: 'Patron', Helvetica, Arial, sans-serif;
+$sans: 'kd', Helvetica, Arial, sans-serif;
 
 // General
 html { overflow-y: scroll; }

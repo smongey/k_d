@@ -6,7 +6,7 @@ var kd = {
 	$w : $(window),
 	$d : $(document),
 	$b : $('body'),
-	url : window.location
+	url : window.location.href
 };
 
 
@@ -65,7 +65,7 @@ kd.$d.on('click', 'a.about', function(e){
 	$('a.about, a.contact').removeClass('active');
 	$('section.about, section.contact, section.home').addClass('out');
 	setTimeout(function(){
-		$('#wrap').empty().load('/ #wrap > *', function(){
+		$('#wrap').empty().load(kd.url + ' #wrap > *', function(){
 			$('body').removeClass().addClass('home');
 			setTimeout(function(){
 				$('section.home').removeClass('out');
