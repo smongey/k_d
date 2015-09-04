@@ -60,7 +60,7 @@ kd.$d.on('click', 'a.about', function(e){
 
 	e.preventDefault();
 	l('home clicked');
-	window.history.pushState('', 'Kr&aring;kvik &amp; D&rsquo;Orazio', '/');
+	window.history.pushState('', 'Kr&aring;kvik &amp; D&rsquo;Orazio', kd.url);
 	// $('section.home').toggleClass('out');
 	$('a.about, a.contact').removeClass('active');
 	$('section.about, section.contact, section.home').addClass('out');
