@@ -1,0 +1,22 @@
+
+General
+ ✔ setup subdomain on bypost.webfactional @done (15-09-13 12:07)
+ ✔ download B&Y files @done (15-09-13 12:07)
+ ✔ finish responsive homepage @done (15-09-13 16:22)
+ ☐ to the top button functionality
+ ✔ kitten slideshow @done (15-09-13 22:54)
+ ✔ slideshow html @done (15-09-13 22:54)
+ ✔ slideshow css @done (15-09-13 22:54)
+ ✔ slideshow responsive code @done (15-09-13 22:54)
+ ✔ slideshow js @done (15-09-13 22:54)
+ ☐ mobile slideshow (touch gestures)
+ ✔ use arrows js @done (15-09-13 22:54)
+
+Slideshow notes
+ it is on the page from the start but hidden then uses a token from the number of the image that was clicked on the page and opens that image in the lightbox
+
+CMS
+ ☐ Kirby local setup
+ ☐ Make kirby fields and necessary pages
+ ☐ implement templates
+
