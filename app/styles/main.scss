@@ -299,6 +299,7 @@ section {
   }
 }
 
+
 // slideshow
 .slideshow {
   position: fixed;
@@ -368,6 +369,32 @@ section {
   overflow: hidden;
 }
 
+
+#loader {
+  position: fixed;
+  background: white;
+  z-index: 9999;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  text-align: center;
+  transition: all $cubic 1s;
+  &.out {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .logo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all $cubic 1s;
+    &.out {
+      opacity: 0;
+    }
+  }
+}
 
 // About & Contact
 section.about, section.contact {
@@ -458,7 +485,6 @@ footer {
       }
     }
   }
-
 }
 
 .phone {
