@@ -13,6 +13,10 @@ var kd = {
 	home : 'http://' + window.location.host + '/index.html'
 };
 
+$(function() {
+    FastClick.attach(document.body);
+});
+
 kd.$d.on('click', 'a.about', function(e){
 
 	kd.ajaxReq(e, 'about')
@@ -33,7 +37,7 @@ kd.$d.on('click', 'a.about', function(e){
 		scrollTop: 0
 	}, 1000, 'easeInOutQuint');
 
-}).on('click', '.home img', function(e) {
+}).on('click', 'section.home img', function(e) {
 	e.preventDefault();
 	// l($(this).data('slide'));
 	
@@ -48,15 +52,18 @@ kd.$d.on('click', 'a.about', function(e){
 
 }).on('click', '.slideshow', function(e){
 	e.preventDefault();
-	l(e.target);
+	// l(e.target);
+	l('lol');
 	if(e.target == $('.slideshow')[0]) {
 		$(this).addClass('out');
 		$('html').css('overflow-y', 'hidden');
 		$('body').removeClass('noscroll');
 		$('.slideshow li').removeClass('active');
+		l('lol 2');
 	} else {
-		l('next slide');
+		//l('next slide');
 		kd.goToSlide(kd.slideIndex + 1);
+		l('lol 3');
 	}
 }).on('keydown', function(e) {
 	if(!$('.slideshow').hasClass('out')) {
@@ -103,9 +110,7 @@ kd.$d.ready(function(){
 
 		$('section.home').removeClass('out');
 
-		$('img:not(.slideshow img)').each(function(){
-			kd.slides.push(this.src);
-		});
+		kd.makeSlides();
 
 	}
 	l(kd.url);
@@ -166,6 +171,7 @@ kd.goToSlide = function(index){
 	l(index);
 	if (index < 0) {
 		kd.slideIndex = kd.slides.length - 1;
+		l(kd.slides.length - 1);
 	} else if (index == kd.slides.length) {
 		kd.slideIndex = 0;
 	} else {
@@ -178,6 +184,7 @@ kd.goToSlide = function(index){
 
 // Functions
 kd.responsiveClasses = function(){
+	//l('fired');
 	var current_width = kd.$w.width();
 	//do something with the width value here!
 	if(current_width < 499) {
@@ -218,11 +225,13 @@ kd.responsiveClasses = function(){
 		$('li.contact').insertAfter('li.logo');
 		$('li.top').insertAfter('li.insta');
 	}
-	if(current_width < 650){
+
+	if(current_width < 650){		
 		$('body').addClass("mobile");
-	}
-	if(current_width > 651){
-	  $('body').removeClass("mobile");
+		kd.switchLayout();
+	} else if(current_width > 651){
+		$('body').removeClass("mobile");
+
 	}
 };
 
@@ -260,13 +269,29 @@ function enableScroll() {
     document.onkeydown = null;  
 }
 
-kd.makeSlider = function(){
-	$('.home img').each(function(i){
-		l($(this).attr('src'));
-		kd.slides.push($(this).attr('src'));
+// kd.makeSlider = function(){
+// 	$('.home img').each(function(i){
+// 		l($(this).attr('src'));
+// 		kd.slides.push($(this).attr('src'));
+// 	});
+// }
+
+kd.makeSlides = function(){
+	$('img:not(.slideshow img)').each(function(){
+		kd.slides.push(this.src);
 	});
 }
 
+
+kd.switchLayout = function(){
+	if ($('body').hasClass("mobile")) {
+		if (window.location.href.indexOf('about') > 0) {
+			$('.bios').before($('.image'));
+		} else if (window.location.href.indexOf('contact') > 0) {
+			$('.studio').before($('.image'));
+		}
+	}
+}
 
 kd.ajaxReq = function(e){
 
@@ -274,6 +299,8 @@ kd.ajaxReq = function(e){
 		case "home":
 			
 			e.preventDefault();
+			kd.slideIndex = 0;
+			l(kd.slideIndex);
 			if (e.type === 'click') { 
 				window.history.pushState('', 'Kr&aring;kvik &amp; D&rsquo;Orazio', kd.home);
 				l('h fired');
@@ -282,10 +309,11 @@ kd.ajaxReq = function(e){
 			$('section.about, section.contact, section.home').addClass('out');
 			setTimeout(function(){
 				$('#wrap').empty().load(kd.home + ' #wrap > *', function(){
-					$('body').removeClass().addClass('home');
+					$('body').removeClass('about contact').addClass('home');
 					setTimeout(function(){
 						$('section.home').removeClass('out');
-					}, 500)
+					}, 500);
+					kd.makeSlides();
 				});
 			}, 500);
 
@@ -307,10 +335,11 @@ kd.ajaxReq = function(e){
 			$('section.about, section.contact, section.home').addClass('out');
 			setTimeout(function(){
 				$('#wrap').empty().load('contact.html #wrap > *', function(){
-					$('body').removeClass().addClass('contact');
+					$('body').removeClass('about home').addClass('contact');
 					setTimeout(function(){
 						$('section.contact').removeClass('out');
-					}, 500)
+					}, 500);
+					kd.switchLayout();
 				});
 			}, 500);
 			break;
@@ -329,10 +358,11 @@ kd.ajaxReq = function(e){
 			$('section.about, section.contact, section.home').addClass('out');
 			setTimeout(function(){
 				$('#wrap').empty().load('about.html #wrap > *', function(){
-					$('body').removeClass().addClass('about');
+					$('body').removeClass('contact home').addClass('about');
 					setTimeout(function(){
 						$('section.about').removeClass('out');
-					}, 500)
+					}, 500);
+					kd.switchLayout();
 				});
 			}, 500);
 			break;
