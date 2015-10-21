@@ -10,7 +10,7 @@ var kd = {
 	url : window.location.href,
 	slides : [],
 	slideIndex : 0,
-	home : 'http://' + window.location.host + '/index.html'
+	home : 'http://' + window.location.host
 };
 
 $(function() {
@@ -329,12 +329,12 @@ kd.ajaxReq = function(e){
 			$('a.contact').addClass('active');
 			$('a.about').removeClass('active');
 			if (e.type === 'click') { 
-				window.history.pushState('', 'Contact &mdash; Kr&aring;kvik &amp; D&rsquo;Orazio', 'contact.html');
+				window.history.pushState('', 'Contact &mdash; Kr&aring;kvik &amp; D&rsquo;Orazio', 'contact/');
 				l('c fired');
 			}
 			$('section.about, section.contact, section.home').addClass('out');
 			setTimeout(function(){
-				$('#wrap').empty().load('contact.html #wrap > *', function(){
+				$('#wrap').empty().load('contact/ #wrap > *', function(){
 					$('body').removeClass('about home').addClass('contact');
 					setTimeout(function(){
 						$('section.contact').removeClass('out');
@@ -352,12 +352,12 @@ kd.ajaxReq = function(e){
 			$('a.contact').removeClass('active');
 			
 			if (e.type === 'click') { 
-				window.history.pushState('', 'About &mdash; Kr&aring;kvik &amp; D&rsquo;Orazio', 'about.html');
+				window.history.pushState('', 'About &mdash; Kr&aring;kvik &amp; D&rsquo;Orazio', 'about/');
 				l('a fired');
 			}
 			$('section.about, section.contact, section.home').addClass('out');
 			setTimeout(function(){
-				$('#wrap').empty().load('about.html #wrap > *', function(){
+				$('#wrap').empty().load('about/ #wrap > *', function(){
 					$('body').removeClass('contact home').addClass('about');
 					setTimeout(function(){
 						$('section.about').removeClass('out');
